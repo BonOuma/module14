@@ -1,0 +1,14 @@
+- name: Configure Login Banner
+  hosts: ios_devices
+  gather_facts: no
+  vars:
+    login_banner: "Authorized access only. Unauthorized access is prohibited."
+  tasks:
+    - name: Set login banner message
+      ios_banner:
+        banner: login
+        text: "{{ login_banner }}"
+      register: result
+    - name: Print result
+      debug:
+        var: result
